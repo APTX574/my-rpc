@@ -16,10 +16,12 @@ import java.net.Socket;
 public class SocketClient implements RpcClient {
 
     private final Logger logger = LoggerFactory.getLogger(SocketClient.class);
+    private final String host;
+    private final int port;
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> RpcResponse<T> sentRequest(RpcRequest request, String host, int port) {
+    public <T> RpcResponse<T> sentRequest(RpcRequest request) {
         try (Socket socket = new Socket(host, port)) {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
@@ -32,5 +34,10 @@ public class SocketClient implements RpcClient {
             logger.error("发送调用请求时出错："+request.toString());
         }
         return null;
+    }
+
+    public SocketClient(String host, int port) {
+        this.host = host;
+        this.port = port;
     }
 }

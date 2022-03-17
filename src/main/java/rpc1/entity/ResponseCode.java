@@ -1,11 +1,13 @@
 package rpc1.entity;
 
+import java.io.Serializable;
+
 /**
  * 回应的回应码对象
  *
  * @author aptx
  */
-public class ResponseCode {
+public class ResponseCode implements Serializable {
     public static final int SUCCESS = 0;
     public static final int ERROR = 1;
     private String msg;

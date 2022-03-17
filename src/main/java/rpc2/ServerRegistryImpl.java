@@ -18,8 +18,8 @@ import java.util.concurrent.ConcurrentSkipListSet;
 public class ServerRegistryImpl implements ServerRegistry {
 
     private final Logger logger = LoggerFactory.getLogger(ServerRegistryImpl.class);
-    private final Map<String, Object> serverMap = new HashMap<>();
-    private final Set<String> registeredServer = new ConcurrentSkipListSet<>();
+    private static final Map<String, Object> serverMap = new HashMap<>();
+    private static final Set<String> registeredServer = new ConcurrentSkipListSet<>();
 
     @Override
     public synchronized <T> void registry(T server) {

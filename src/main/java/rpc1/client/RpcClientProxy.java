@@ -8,6 +8,7 @@ import java.lang.reflect.Proxy;
 
 /**
  * 代理对象
+ *
  * @author aptx
  */
 public class RpcClientProxy implements InvocationHandler {
@@ -22,8 +23,8 @@ public class RpcClientProxy implements InvocationHandler {
                 .setParamsTypes(method.getParameterTypes())
                 .setInterfaceName(method.getDeclaringClass().getName());
 
-        SocketClient rpcClient = new SocketClient();
-        return rpcClient.sentRequest(request, host, port).getData();
+        RpcClient rpcClient = new NettyClient(host, port);
+        return rpcClient.sentRequest(request).getData();
 
 
     }
